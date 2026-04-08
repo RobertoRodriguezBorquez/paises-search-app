@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { SearchInputComponent } from '../../../shared/components/search-component/search-component';
+
 
 @Component({
   selector: 'app-by-country-page',
-  imports: [],
+  imports: [SearchInputComponent, ],
   templateUrl: './by-country-page.html',
 })
-export class ByCountryPage { }
+export class ByCountryPageComponent { }

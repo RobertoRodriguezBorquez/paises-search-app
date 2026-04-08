@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-table-component',
+  selector: 'country-list',
   imports: [],
   templateUrl: './table-component.html',
 })
