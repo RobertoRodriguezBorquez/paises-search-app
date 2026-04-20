@@ -1,8 +1,13 @@
 import { Component } from '@angular/core';
-import {  TableComponent } from '../../../shared/components/table-component/table-component';
+import { CountryList } from '../../components/country-list/country-list';
+
 @Component({
   selector: 'app-by-region-page',
-  imports: [TableComponent],
+  imports: [CountryList],
   templateUrl: './by-region-page.html',
 })
-export class ByRegionPageComponent { }
+export class ByRegionPageComponent {
+countries(): import("../../interfaces/rest-countries.interfaces").RESTCountry[] {
+throw new Error('Method not implemented.');
+}
+}

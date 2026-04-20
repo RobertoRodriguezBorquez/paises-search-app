@@ -1,0 +1,49 @@
+<div class="overflow-x-auto shadow-lg rounded-lg border border-base-200 mt-5">
+  <table class="table table-zebra table-hover table-lg w-full">
+    <thead class="bg-base-200 text-base-content">
+      <tr>
+        <th class="font-bold text-center">#</th>
+        <th class="font-bold">Icono</th>
+        <th class="font-bold text-center">Bandera</th>
+        <th class="font-bold">Nombre</th>
+        <th class="font-bold">Capital</th>
+        <th class="font-bold text-right">Población</th>
+        <th class="font-bold">Región</th>
+        <th class="font-bold">Subregión</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (country of countries(); track country.cca2; let index = $index) {
+        <tr class="hover:bg-base-100 transition-colors">
+          <td class="text-center font-mono">{{ index + 1 }}</td>
+          <td class="text-2xl">{{ country.flag }}</td>
+          <td class="text-center">
+            <img
+              [src]="country.flags.svg"
+              [alt]="country.name.common"
+              class="w-20 h-14 object-cover border-2 border-base-300 rounded-lg shadow-md hover:scale-110 transition-transform"
+            />
+          </td>
+          <td class="font-semibold text-lg">{{ country.name.common }}</td>
+          <td class="font-medium">{{ country.capital }}</td>
+          <td class="text-right font-mono">{{ country.population }}</td>
+          <td>
+            <span class="badge badge-outline badge-info">{{ country.region }}</span>
+          </td>
+          <td>
+            <span class="badge badge-outline badge-success">{{ country.subregion }}</span>
+          </td>
+          <td>
+            <a href="#" class="btn btn-sm btn-outline btn-info">Más información</a>
+          </td>
+        </tr>
+      }
+    </tbody>
+    <tfoot class="bg-base-200 text-base-content">
+      <tr>
+        <td colspan="9" class="text-center font-bold">Total de países: {{ countries().length }}</td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
