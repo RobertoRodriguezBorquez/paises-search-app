@@ -4,6 +4,15 @@
 </div>
 
 <section>
+
+  @if (isError()) {
+    <div class="alert alert-error mt-5">
+      <div>
+        <span>Ocurrió un error: {{ isError() }}</span>
+      </div>
+    </div>
+
+  }
   <!--  Aquí se traera el component country-list -->
   <country-list [countries]="countries()" />
 </section>

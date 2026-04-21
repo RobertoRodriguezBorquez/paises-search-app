@@ -27,7 +27,7 @@
           </td>
           <td class="font-semibold text-lg">{{ country.name }}</td>
           <td class="font-medium">{{ country.capital }}</td>
-          <td class="text-right font-mono">{{ country.population }}</td>
+          <td class="text-right font-mono">{{ country.population | number }}</td>
           <td>
             <span class="badge badge-outline badge-info">{{ country.region }}</span>
           </td>

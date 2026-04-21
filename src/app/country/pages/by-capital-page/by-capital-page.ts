@@ -13,22 +13,39 @@ import { Country } from '../../interfaces/country.interface';
 })
 export class ByCapitalPageComponent {
   countryService = inject(CountryService);
-  
-  isLoading = signal(false);
-  isError = signal<string | null>(null)
-  countries = signal<Country[]>([])
 
+  isLoading = signal(false);
+  isError = signal<string | null>(null);
+  countries = signal<Country[]>([]);
 
   onSearch(query: string) {
-    if ( this.isLoading())return;
+    if (this.isLoading()) return;
     this.isLoading.set(true);
     this.isError.set(null);
 
-    this.countryService.searchByCapital(query).subscribe((countries)=>{
-      this.isLoading.set(false)
-      this.countries.set(countries)
-      console.log(countries);
-    
-    })
+    this.countryService.searchByCapital(query).subscribe({
+      next: (countries) => {
+        this.isLoading.set(false);
+        this.countries.set(countries);
+      },
+      error: (err) => {
+        this.isLoading.set(false);
+        this.countries.set([]);
+        this.isError.set(`No se encontro ninguna capital con el nombre: ${query}. `);
+      },
+    });
   }
 }
+
+// onSearch(query: string) {
+//     if ( this.isLoading())return;
+//     this.isLoading.set(true);
+//     this.isError.set(null);
+
+//     this.countryService.searchByCapital(query).subscribe((countries)=>{
+//       this.isLoading.set(false)
+//       this.countries.set(countries)
+//       console.log(countries);
+
+//     })
+//   }
