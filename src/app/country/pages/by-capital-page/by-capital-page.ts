@@ -4,6 +4,7 @@ import { SearchInputComponent } from '../../../shared/components/search-componen
 import { CountryService } from '../../services/country.service';
 import { RESTCountry } from '../../interfaces/rest-countries.interfaces';
 import { CountryList } from '../../components/country-list/country-list';
+import { Country } from '../../interfaces/country.interface';
 
 @Component({
   selector: 'app-by-capital-page',
@@ -15,7 +16,7 @@ export class ByCapitalPageComponent {
   
   isLoading = signal(false);
   isError = signal<string | null>(null)
-  countries = signal<RESTCountry[]>([])
+  countries = signal<Country[]>([])
 
 
   onSearch(query: string) {
