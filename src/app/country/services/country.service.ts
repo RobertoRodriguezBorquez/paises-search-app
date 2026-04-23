@@ -23,4 +23,14 @@ export class CountryService {
       }),
     );
   }
+
+  searchByRegion(region: string): Observable<Country[]> {
+    return this.http.get<RESTCountry[]>(`${URL_API}/region/${region}`).pipe(
+      map((resp) => CountryMapper.mapRestCountryArrayToCountryArray(resp)),
+      catchError((err) => {
+        console.log('Error fetching', err);
+        return throwError(() => new Error('No se encontro datos con esa region'));
+      }),
+    );
+  }
 }
