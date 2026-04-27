@@ -40,25 +40,23 @@
         </tr>
       }
 
-      <!--  -->
-      @if (errorMessage()) {
+@if (errorMessage()) {
         <tr>
           <td colspan="8" class="text-center text-error font-bold">
             Ocurrió un error: {{ errorMessage() }}
           </td>
         </tr>
       }
-        <!--  -->
-    @if (countries().length === 0 && !isLoading()) {
-         <tr>
-          <td colspan="8" class="text-center font-bold">No se encontraron resultados.</td>
-       
-      }
 
-      <!--  -->
-    @if (isLoading()) {
+      @if (isLoading()) {
         <tr>
           <td colspan="8" class="text-center font-bold">Cargando países...</td>
+        </tr>
+      }
+
+      @if (!isLoading() && countries().length === 0) {
+        <tr>
+          <td colspan="8" class="text-center font-bold">No se encontraron resultados.</td>
         </tr>
       }
     </tbody>
