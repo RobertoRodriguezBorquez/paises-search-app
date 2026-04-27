@@ -1,9 +1,87 @@
-<section>
-  @if (countryResource.error()) {
-    <div class="alert alert-error mt-5">
-      <div>
-        <span>Ocurrió un error: {{ countryResource.error() }}</span>
+<div class="space-y-6 mt-4">
+  <!-- Regions Section -->
+  <div>
+    <h2 class="text-lg font-bold mb-3">Selecciona una región</h2>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
+      <button
+        (click)="onRegionSelected('Africa')"
+        [class.btn-primary]="selectedRegion() === 'Africa'"
+        [class.btn-ghost]="selectedRegion() !== 'Africa'"
+        class="btn"
+      >
+        África
+      </button>
+      <button
+        (click)="onRegionSelected('Americas')"
+        [class.btn-primary]="selectedRegion() === 'Americas'"
+        [class.btn-ghost]="selectedRegion() !== 'Americas'"
+        class="btn"
+      >
+        América
+      </button>
+      <button
+        (click)="onRegionSelected('Asia')"
+        [class.btn-primary]="selectedRegion() === 'Asia'"
+        [class.btn-ghost]="selectedRegion() !== 'Asia'"
+        class="btn"
+      >
+        Asia
+      </button>
+      <button
+        (click)="onRegionSelected('Europe')"
+        [class.btn-primary]="selectedRegion() === 'Europe'"
+        [class.btn-ghost]="selectedRegion() !== 'Europe'"
+        class="btn"
+      >
+        Europa
+      </button>
+      <button
+        (click)="onRegionSelected('Oceania')"
+        [class.btn-primary]="selectedRegion() === 'Oceania'"
+        [class.btn-ghost]="selectedRegion() !== 'Oceania'"
+        class="btn"
+      >
+        Oceanía
+      </button>
+    </div>
+  </div>
+
+  <!-- Subregions Section -->
+  @if (selectedRegion()) {
+    <div class="divider"></div>
+    <div>
+      <h2 class="text-lg font-bold mb-3">Subregiones de {{ selectedRegion() }}</h2>
+      <div class="flex flex-wrap gap-2">
+        @for (subregion of subregions(); track subregion) {
+          <button
+            (click)="onSubregionSelected(subregion)"
+            class="badge badge-lg badge-outline hover:badge-primary cursor-pointer transition-all"
+          >
+            {{ subregion }}
+          </button>
+        }
       </div>
+    </div>
+  }
+</div>
+
+<section class="mt-8">
+  @if (countryResource.error()) {
+    <div class="alert alert-error">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="stroke-current shrink-0 h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M10 14l-2-2m0 0l-2-2m2 2l2-2m-2 2l-2 2m8-2l2 2m0 0l2 2m-2-2l-2 2m2-2l2-2M9 3H5a2 2 0 00-2 2v4a2 2 0 002 2h4a2 2 0 002-2V5a2 2 0 00-2-2zm0 0V1m0 6v4m8-10h4a2 2 0 012 2v4a2 2 0 01-2 2h-4a2 2 0 01-2-2V5a2 2 0 012-2zm0 0V1m0 6v4"
+        />
+      </svg>
+      <span>{{ countryResource.error() }}</span>
     </div>
   }
   @if (countryResource.hasValue()) {

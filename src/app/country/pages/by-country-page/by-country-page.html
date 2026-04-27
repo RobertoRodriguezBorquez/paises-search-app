@@ -1,5 +1,13 @@
 <div class="flex flex-row gap-2 mt-2">
-    <!-- Aqui mostrara component search-->
-     <country-search-input placeholder="Buscar capital de mi pais" />
- 
+  <!-- Aqui mostrara component search-->
+  <country-search-input placeholder="Buscar por país" (value)="pais.set($event)" />
 </div>
+
+<section>
+  <country-list
+    [countries]="countryResource.value() ?? []"
+    [errorMessage]="countryResource.error()"
+    [isEmpty]="countryResource.value()?.length === 0"
+    [isLoading]="countryResource.isLoading()"
+  />
+</section>
