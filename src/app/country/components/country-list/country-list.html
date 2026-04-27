@@ -39,7 +39,31 @@
           </td>
         </tr>
       }
+
+      <!--  -->
+      @if (errorMessage()) {
+        <tr>
+          <td colspan="8" class="text-center text-error font-bold">
+            Ocurrió un error: {{ errorMessage() }}
+          </td>
+        </tr>
+      }
+        <!--  -->
+    @if (countries().length === 0 && !isLoading()) {
+         <tr>
+          <td colspan="8" class="text-center font-bold">No se encontraron resultados.</td>
+       
+      }
+
+      <!--  -->
+    @if (isLoading()) {
+        <tr>
+          <td colspan="8" class="text-center font-bold">Cargando países...</td>
+        </tr>
+      }
     </tbody>
+
+    <!--  -->
     <tfoot class="bg-base-200 text-base-content">
       <tr>
         <td colspan="9" class="text-center font-bold">Total de países: {{ countries().length }}</td>
