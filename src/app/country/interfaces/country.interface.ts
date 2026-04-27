@@ -6,6 +6,9 @@ export interface Country {
   name: string; // Nombre común del país
   capital: string[]; // Capital del país
   population: number; // Población del país
-  region: string; // Región del país
-  subregion: string; // Subregión del país
+  region?: string; // Región del país
+  subregion?: string; // Subregión del país
+
+  // implementar ? sirve para uso de campos opcionales.
+  
 }

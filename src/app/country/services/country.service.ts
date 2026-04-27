@@ -33,4 +33,14 @@ export class CountryService {
       }),
     );
   }
+
+  searchByPais(pais: string): Observable<Country[]> {
+    return this.http.get<RESTCountry[]>(`${URL_API}/name/${pais}`).pipe(
+      map((resp) => CountryMapper.mapRestCountryArrayToCountryArray(resp)),
+      catchError((err) => {
+        console.log('Error fetching', err);
+        return throwError(() => new Error('No se encontro datos con ese país'));
+      }),
+    );
+  }
 }
