@@ -1,61 +1,81 @@
-<div class="space-y-6 mt-4">
-  <!-- Regions Section -->
-  <div>
-    <h2 class="text-lg font-bold mb-3">Selecciona una región</h2>
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
-      <button
-        (click)="onRegionSelected('Africa')"
-        [class.btn-primary]="selectedRegion() === 'Africa'"
-        [class.btn-ghost]="selectedRegion() !== 'Africa'"
-        class="btn"
-      >
-        África
-      </button>
-      <button
-        (click)="onRegionSelected('Americas')"
-        [class.btn-primary]="selectedRegion() === 'Americas'"
-        [class.btn-ghost]="selectedRegion() !== 'Americas'"
-        class="btn"
-      >
-        América
-      </button>
-      <button
-        (click)="onRegionSelected('Asia')"
-        [class.btn-primary]="selectedRegion() === 'Asia'"
-        [class.btn-ghost]="selectedRegion() !== 'Asia'"
-        class="btn"
-      >
-        Asia
-      </button>
-      <button
-        (click)="onRegionSelected('Europe')"
-        [class.btn-primary]="selectedRegion() === 'Europe'"
-        [class.btn-ghost]="selectedRegion() !== 'Europe'"
-        class="btn"
-      >
-        Europa
-      </button>
-      <button
-        (click)="onRegionSelected('Oceania')"
-        [class.btn-primary]="selectedRegion() === 'Oceania'"
-        [class.btn-ghost]="selectedRegion() !== 'Oceania'"
-        class="btn"
-      >
-        Oceanía
-      </button>
-    </div>
+<div class="space-y-8 mt-4">
+  <!-- Header Section -->
+  <div class="border-b border-base-300 pb-4">
+    <h1 class="text-2xl font-bold text-base-content">Explorar por Región</h1>
+    <p class="text-base-content/60 mt-1">Selecciona una región geográfica para explorar países</p>
+  </div>
+
+  <!-- Regions Grid -->
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+    <button
+      (click)="onRegionSelected('Africa')"
+      class="group relative flex flex-col items-center justify-center gap-2 p-4 rounded-xl border-2 transition-all duration-200"
+      [class.border-primary]="selectedRegion() === 'Africa'"
+      [class.bg-primary/10]="selectedRegion() === 'Africa'"
+      [class.border-base-300]="selectedRegion() !== 'Africa'"
+      class="hover:bg-base-100"
+    >
+      <span class="text-2xl">🌍</span>
+      <span class="font-medium text-sm">África</span>
+    </button>
+    <button
+      (click)="onRegionSelected('Americas')"
+      class="group relative flex flex-col items-center justify-center gap-2 p-4 rounded-xl border-2 transition-all duration-200"
+      [class.border-primary]="selectedRegion() === 'Americas'"
+      [class.bg-primary/10]="selectedRegion() === 'Americas'"
+      [class.border-base-300]="selectedRegion() !== 'Americas'"
+      class="hover:bg-base-100"
+    >
+      <span class="text-2xl">🌎</span>
+      <span class="font-medium text-sm">América</span>
+    </button>
+    <button
+      (click)="onRegionSelected('Asia')"
+      class="group relative flex flex-col items-center justify-center gap-2 p-4 rounded-xl border-2 transition-all duration-200"
+      [class.border-primary]="selectedRegion() === 'Asia'"
+      [class.bg-primary/10]="selectedRegion() === 'Asia'"
+      [class.border-base-300]="selectedRegion() !== 'Asia'"
+      class="hover:bg-base-100"
+    >
+      <span class="text-2xl">🌏</span>
+      <span class="font-medium text-sm">Asia</span>
+    </button>
+    <button
+      (click)="onRegionSelected('Europe')"
+      class="group relative flex flex-col items-center justify-center gap-2 p-4 rounded-xl border-2 transition-all duration-200"
+      [class.border-primary]="selectedRegion() === 'Europe'"
+      [class.bg-primary/10]="selectedRegion() === 'Europe'"
+      [class.border-base-300]="selectedRegion() !== 'Europe'"
+      class="hover:bg-base-100"
+    >
+      <span class="text-2xl">🏰</span>
+      <span class="font-medium text-sm">Europa</span>
+    </button>
+    <button
+      (click)="onRegionSelected('Oceania')"
+      class="group relative flex flex-col items-center justify-center gap-2 p-4 rounded-xl border-2 transition-all duration-200"
+      [class.border-primary]="selectedRegion() === 'Oceania'"
+      [class.bg-primary/10]="selectedRegion() === 'Oceania'"
+      [class.border-base-300]="selectedRegion() !== 'Oceania'"
+      class="hover:bg-base-100"
+    >
+      <span class="text-2xl">🌊</span>
+      <span class="font-medium text-sm">Oceanía</span>
+    </button>
   </div>
 
   <!-- Subregions Section -->
   @if (selectedRegion()) {
-    <div class="divider"></div>
-    <div>
-      <h2 class="text-lg font-bold mb-3">Subregiones de {{ selectedRegion() }}</h2>
+    <div class="animate-in fade-in slide-in-from-top-2 duration-300">
+      <div class="flex items-center gap-3 mb-4">
+        <h2 class="text-lg font-semibold">Subregiones de {{ selectedRegion() }}</h2>
+        <span class="badge badge-neutral badge-sm">{{ subregions().length }}</span>
+      </div>
       <div class="flex flex-wrap gap-2">
         @for (subregion of subregions(); track subregion) {
           <button
             (click)="onSubregionSelected(subregion)"
-            class="badge badge-lg badge-outline hover:badge-primary cursor-pointer transition-all"
+            class="px-4 py-2 rounded-full border border-base-300 bg-base-100 text-sm font-medium transition-all duration-200 hover:bg-primary hover:text-primary-content hover:border-primary cursor-pointer"
           >
             {{ subregion }}
           </button>
@@ -67,7 +87,7 @@
 
 <section class="mt-8">
   @if (countryResource.error()) {
-    <div class="alert alert-error">
+    <div class="alert alert-error shadow-lg">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         class="stroke-current shrink-0 h-6 w-6"
@@ -84,7 +104,21 @@
       <span>{{ countryResource.error() }}</span>
     </div>
   }
-  @if (countryResource.hasValue()) {
+  @if (countryResource.isLoading()) {
+    <div class="flex flex-col items-center justify-center gap-4 py-12">
+      <span class="loading loading-spinner loading-lg text-primary"></span>
+      <p class="text-base-content/60">Cargando países...</p>
+    </div>
+  } @else if (countryResource.hasValue() && countryResource.value()!.length === 0) {
+    <div class="flex flex-col items-center justify-center gap-4 py-12 text-center">
+      <div class="text-6xl">🔍</div>
+      <h3 class="text-xl font-semibold">Sin resultados</h3>
+      <p class="text-base-content/60 max-w-md">
+        No se encontraron países en la región <strong>{{ region() || selectedRegion() }}</strong>.
+        Intenta seleccionar una subregión diferente.
+      </p>
+    </div>
+  } @else if (countryResource.hasValue()) {
     <country-list [countries]="countryResource.value()!" />
   }
 </section>
