@@ -11,7 +11,7 @@ interface RegionMap {
 
 @Component({
   selector: 'app-by-region-page',
-  imports: [CountryList, SearchInputComponent],
+  imports: [CountryList],
   templateUrl: './by-region-page.html',
 })
 export class ByRegionPageComponent {
