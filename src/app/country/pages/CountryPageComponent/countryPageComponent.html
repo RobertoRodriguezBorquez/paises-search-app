@@ -1,1 +1,15 @@
-<p>CountryPageComponent works!</p>,
+@if( countryResource.error() ){
+<app-not-found></app-not-found>
+
+
+}
+
+@if( countryResource.hasValue()){
+<section class="min-h-screen flex items-center justify-center p-4">
+  <div class="bg-white rounded-lg shadow p-8 max-w-md">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6">{{countryResource.value()?.[0]?.name}}</h1>
+  
+    <a href="/countries" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">← Volver</a>
+  </div>
+</section>
+}
