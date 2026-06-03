@@ -8,7 +8,4 @@ export interface Country {
   population: number; // Población del país
   region?: string; // Región del país
   subregion?: string; // Subregión del país
-
-  // implementar ? sirve para uso de campos opcionales.
-  
 }

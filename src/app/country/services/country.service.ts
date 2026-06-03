@@ -27,7 +27,6 @@ export class CountryService {
     return this.http.get<RESTCountry[]>(`${URL_API}/region/${region}`).pipe(
       map((resp) => CountryMapper.mapRestCountryArrayToCountryArray(resp)),
       catchError((err) => {
-        console.log('Error fetching', err);
         return throwError(() => new Error('No se encontro datos con esa region'));
       }),
     );
@@ -38,6 +37,15 @@ export class CountryService {
       map((resp) => CountryMapper.mapRestCountryArrayToCountryArray(resp)),
       catchError((err) => {
         return of([]);
+      }),
+    );
+  }
+
+  searchPaisByInformacion(code: string) {
+    return this.http.get<RESTCountry[]>(`${URL_API}/alpha/${code}`).pipe(
+      map((resp) => CountryMapper.mapRestCountryArrayToCountryArray(resp)),
+      catchError((err) => {
+        return throwError(() => new Error(`No se encontró información para el código: ${code}`));
       }),
     );
   }

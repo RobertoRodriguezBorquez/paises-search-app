@@ -3,7 +3,6 @@ import { CountryService } from '../../services/country.service';
 import { CountryList } from '../../components/country-list/country-list';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { of } from 'rxjs';
-import { SearchInputComponent } from '../../../shared/components/search-component/search-component';
 
 interface RegionMap {
   [key: string]: string[];
