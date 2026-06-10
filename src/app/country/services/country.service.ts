@@ -15,6 +15,7 @@ export class CountryService {
 
   searchByCapital(query: string): Observable<Country[]> {
     query = query.toLowerCase();
+   
     return this.http.get<RESTCountry[]>(`${URL_API}/capital/${query}`).pipe(
       map((resp) => CountryMapper.mapRestCountryArrayToCountryArray(resp)),
       catchError((err) => {
