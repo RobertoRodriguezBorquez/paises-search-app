@@ -10,6 +10,8 @@
         <th class="font-bold text-right">Población</th>
         <th class="font-bold">Región</th>
         <th class="font-bold">Subregión</th>
+        <th class="font-bold text-center">Más información</th>
+
         <th></th>
       </tr>
     </thead>
@@ -35,7 +37,7 @@
             <span class="badge badge-outline badge-success">{{ country.subregion }}</span>
           </td>
           <td>
-            <a href="#" class="btn btn-sm btn-outline btn-info">Más información</a>
+            <a [routerLink]="['/country/by', country.cca2]" class="btn btn-sm btn-outline btn-info">Más información</a>
           </td>
         </tr>
       }
@@ -69,3 +71,4 @@
     </tfoot>
   </table>
 </div>
+

@@ -1,0 +1,46 @@
+<section class="min-h-screen flex items-center justify-center p-4 bg-base-100">
+  <div class="card bg-base-200 shadow-xl max-w-2xl w-full">
+    <figure class="px-10 pt-10">
+      <img 
+        [src]="country()!.flagsSvg" 
+        [alt]="country()!.name"
+        class="rounded-lg border-4 border-base-300 w-64 h-40 object-cover"
+      />
+    </figure>
+    <div class="card-body">
+      <h1 class="card-title text-3xl font-bold text-gray-800 mb-6">{{ country()!.name }}</h1>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="stat bg-base-100 shadow rounded-lg p-4">
+          <div class="stat-title text-sm font-semibold text-gray-600">Código de País</div>
+          <div class="stat-value text-2xl font-bold text-primary">{{ country()!.cca2 }}</div>
+        </div>
+        
+        <div class="stat bg-base-100 shadow rounded-lg p-4">
+          <div class="stat-title text-sm font-semibold text-gray-600">Población</div>
+          <div class="stat-value text-2xl font-bold text-secondary">{{ country()!.population | number }}</div>
+        </div>
+        
+        <div class="stat bg-base-100 shadow rounded-lg p-4">
+          <div class="stat-title text-sm font-semibold text-gray-600">Capital</div>
+          <div class="stat-value text-lg font-bold text-accent">{{ country()!.capital[0] ?? 'N/A' }}</div>
+        </div>
+        
+        <div class="stat bg-base-100 shadow rounded-lg p-4">
+          <div class="stat-title text-sm font-semibold text-gray-600">Región</div>
+          <div class="stat-value text-lg font-bold text-info">{{ country()!.region ?? 'N/A' }}</div>
+        </div>
+        
+        <div class="stat bg-base-100 shadow rounded-lg p-4 md:col-span-2">
+          <div class="stat-title text-sm font-semibold text-gray-600">Subregión</div>
+          <div class="stat-value text-lg font-bold text-warning">{{ country()!.subregion ?? 'N/A' }}</div>
+        </div>
+      </div>
+      
+      <div class="card-actions justify-start mt-6">
+        <button (click)="goBack()" class="btn btn-outline btn-primary">← Volver</button>
+      </div>
+    </div>
+  </div>
+</section>
+

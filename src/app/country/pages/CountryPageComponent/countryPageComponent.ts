@@ -4,10 +4,11 @@ import { rxResource } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { CountryService } from '../../services/country.service';
 import { NotFound } from '../../../shared/components/not-found/not-found';
+import { CountryInformation } from './country-information/country-information';
 
 @Component({
   selector: 'app-country-page-component',
-  imports: [DecimalPipe, NotFound],
+  imports: [DecimalPipe, NotFound,CountryInformation],
   templateUrl: './countryPageComponent.html',
 
 })
